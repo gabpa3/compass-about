@@ -3,19 +3,22 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.ksp)
-
 }
 
 android {
-    namespace = "com.gabcode.compassabout"
-    compileSdk = 34
+    namespace = project.property("namespace").toString()
+    compileSdk = project.property("compileSdk").toString().toInt()
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
-        applicationId = "com.gabcode.compassabout"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = project.property("applicationId").toString()
+        minSdk = project.property("minSdk").toString().toInt()
+        targetSdk = project.property("targetSdk").toString().toInt()
+        versionCode = project.property("versionCode").toString().toInt()
+        versionName = project.property("versionName").toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
