@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class AboutEntity(
     @ColumnInfo(name = "created_at") val createdAt: Long = System.currentTimeMillis(),
     @ColumnInfo(name = "modified_at") val modifiedAt: Long = System.currentTimeMillis(),
-    @ColumnInfo(name = "content") val content: String?
+    @ColumnInfo(name = "content") val content: String
 ) {
     @PrimaryKey(autoGenerate = true) var id: Long = 0
 }
