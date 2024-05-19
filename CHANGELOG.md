@@ -2,3 +2,4 @@
 ## Added
 - Initial scaffolding - configure dependencies, properties and permission
 - Create database Dao and Entity and handle remote connection
+- Create DI mechanism and initial structure for usecases and repository
