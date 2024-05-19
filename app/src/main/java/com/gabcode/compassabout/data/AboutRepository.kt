@@ -5,13 +5,13 @@ import com.gabcode.compassabout.data.database.AboutDao
 import com.gabcode.compassabout.data.database.AboutEntity
 import com.gabcode.compassabout.util.ConnectivityChecker
 import com.gabcode.compassabout.util.NotFoundConnectivityException
-import com.gabcode.compassabout.util.asResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 interface IAboutRepository {
     suspend fun fetchContent(): Result<AboutResponse>
 }
+
 class AboutRepository(
     private val service: IAboutService,
     private val connectivityChecker: ConnectivityChecker,
@@ -20,11 +20,15 @@ class AboutRepository(
 ) : IAboutRepository {
 
     override suspend fun fetchContent(): Result<AboutResponse> = withContext(ioDispatcher) {
-        val result = getCachedData()?.let { entity ->
-            AboutResponse(entity.content)
-        } ?: getRemoteData()
+        try {
+            val result = getCachedData()?.let { entity ->
+                AboutResponse(entity.content)
+            } ?: getRemoteData()
 
-        result.asResult()
+            Result.success(result)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
     private suspend fun getRemoteData(): AboutResponse {
