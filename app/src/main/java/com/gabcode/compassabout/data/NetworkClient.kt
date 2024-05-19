@@ -10,7 +10,11 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 
-class NetworkClient {
+interface IAboutService {
+    suspend fun makeRequest(): AboutResponse
+}
+
+class NetworkClient : IAboutService {
 
     private val client: OkHttpClient by lazy {
         OkHttpClient.Builder()
@@ -20,7 +24,7 @@ class NetworkClient {
             }).build()
     }
 
-    suspend fun makeRequest(): AboutResponse {
+    override suspend fun makeRequest(): AboutResponse {
         return suspendCoroutine { continuation ->
 
             val request = Request.Builder()
