@@ -6,8 +6,8 @@ import com.gabcode.compassabout.data.IAboutService
 import com.gabcode.compassabout.data.NetworkClient
 import com.gabcode.compassabout.data.database.AppDatabase
 import com.gabcode.compassabout.di.ServiceLocator
-import kotlinx.coroutines.Dispatchers
 import com.gabcode.compassabout.di.ServiceLocator.get
+import kotlinx.coroutines.Dispatchers
 
 class DataModule : Module {
 
