@@ -7,6 +7,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
+/**
+ * UseCase to find every 10th character in the content.
+ *
+ * @property repository [IAboutRepository] to fetch content.
+ * @property defaultDispatcher to run the useCase.
+ */
 class FindEveryTenthCharacterUseCase(
     private val repository: IAboutRepository,
     private val defaultDispatcher: CoroutineDispatcher

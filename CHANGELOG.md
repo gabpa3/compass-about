@@ -5,3 +5,4 @@
 - Create DI mechanism and initial structure for usecases and repository
 - Include usecase code for grabbing content and about repository and its tests respectively
 - Include usecase code for finding tenth character and its ui adapter
+- Include usecase code for finding word occurrences and its ui adapter

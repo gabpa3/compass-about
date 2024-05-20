@@ -12,6 +12,15 @@ interface IAboutRepository {
     suspend fun fetchContent(): Result<AboutResponse>
 }
 
+/**
+ * Repository responsible of fetching data from remote or local database. Moreover, it checks
+ * connectivity availability.
+ *
+ * @property service [IAboutService]
+ * @property connectivityChecker [ConnectivityChecker]
+ * @property aboutDao [AboutDao]
+ * @property ioDispatcher CoroutineDispatcher
+ */
 class AboutRepository(
     private val service: IAboutService,
     private val connectivityChecker: ConnectivityChecker,
