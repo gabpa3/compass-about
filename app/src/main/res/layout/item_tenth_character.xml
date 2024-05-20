@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="@dimen/_2dp"
+    android:layout_marginVertical="@dimen/_2dp"
+    app:cardCornerRadius="@dimen/_4dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="@dimen/_72dp"
+        android:layout_height="@dimen/_96dp"
+        android:orientation="vertical"
+        android:padding="@dimen/_4dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_tenth_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="number"
+            android:textSize="@dimen/_18sp"
+            android:textStyle="bold"
+            tools:text="m"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_tenth_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:inputType="text"
+            android:textSize="@dimen/_11sp"
+            tools:text="10th" />
+
+    </FrameLayout>
+
+</com.google.android.material.card.MaterialCardView>
