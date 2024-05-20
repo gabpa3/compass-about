@@ -92,7 +92,7 @@ class FindCharSequenceOccurrencesUseCaseTest {
                 val data = it.getOrNull()!!.toList()
                 for (i in resultExpected.indices) {
                     assertEquals(resultExpected[i].word, data[i].word)
-                    assertEquals(resultExpected[i].count, data[i].count)
+                    assertEquals(resultExpected[i].occurrences, data[i].occurrences)
                 }
             }
         }
