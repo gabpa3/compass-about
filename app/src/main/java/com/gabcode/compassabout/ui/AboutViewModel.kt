@@ -9,6 +9,7 @@ import com.gabcode.compassabout.domain.GrabContentUseCase
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -19,10 +20,10 @@ class AboutViewModel(
 ) : ViewModel() {
 
     private val mWordOccurrences = MutableStateFlow<UIState<List<WordOccurrenceItem>>>(UIState.Idle)
-    val wordOccurrences: StateFlow<UIState<List<WordOccurrenceItem>>> = mWordOccurrences
+    val wordOccurrences: StateFlow<UIState<List<WordOccurrenceItem>>> = mWordOccurrences.asStateFlow()
 
     private val mTenthCharacters = MutableStateFlow<UIState<List<TenthCharacterItem>>>(UIState.Idle)
-    val tenthCharacters: StateFlow<UIState<List<TenthCharacterItem>>> = mTenthCharacters
+    val tenthCharacters: StateFlow<UIState<List<TenthCharacterItem>>> = mTenthCharacters.asStateFlow()
 
     fun fetchContent() {
         viewModelScope.launch(CoroutineName("fetchContent")) {
@@ -52,7 +53,7 @@ class AboutViewModel(
 
             result.getOrNull()?.let { data ->
                 val uiModel = data.toUIModel()
-                Log.i("AboutViewModel", "findTenthCharacters result: $uiModel")
+                Log.d("AboutViewModel", "findTenthCharacters result: $uiModel")
 
                 mTenthCharacters.update {
                     UIState.Success(uiModel)
@@ -75,7 +76,7 @@ class AboutViewModel(
 
             result.getOrNull()?.let { data ->
                 val uiModel = data.toUIModel()
-                Log.i("AboutViewModel", "findOccurrences result: $uiModel")
+                Log.d("AboutViewModel", "findOccurrences result: $uiModel")
 
                 mWordOccurrences.update {
                     UIState.Success(uiModel)
