@@ -7,3 +7,6 @@
 - Include usecase code for finding tenth character and its ui adapter
 - Include usecase code for finding word occurrences and its ui adapter
 - Create viewmodel and tests and UI for lists
+
+## Changes
+- Restructure UI with fragment HOME and AboutList
