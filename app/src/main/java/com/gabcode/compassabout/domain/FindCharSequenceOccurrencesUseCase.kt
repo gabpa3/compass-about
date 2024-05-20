@@ -7,6 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
+/**
+ * UseCase to split char sequences by spaces, tabs or break line
+ * considering take and html tag with < > or /> as an element while not space appears. Then count
+ * occurrences of split words.
+ *
+ * @property repository [IAboutRepository] to fetch content
+ * @property defaultDispatcher to run the use case
+ */
 class FindCharSequenceOccurrencesUseCase(
     private val repository: IAboutRepository,
     private val defaultDispatcher: CoroutineDispatcher
