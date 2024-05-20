@@ -91,7 +91,7 @@
         android:layout_marginBottom="@dimen/_16dp"
         android:backgroundTint="?colorPrimary"
         android:contentDescription="@string/about_start_content_description"
-        android:src="@drawable/ic_double_arrow_right"
+        android:src="@drawable/ic_auto_renew"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
