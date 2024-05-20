@@ -41,6 +41,7 @@ class AboutViewModel(
     }
 
     private suspend fun findTenthCharacters() {
+        mTenthCharacters.value = UIState.Loading
         findEveryTenthCharacterUseCase.invoke().collect { result ->
             if (result.isFailure) {
                 mTenthCharacters.update {
@@ -62,6 +63,7 @@ class AboutViewModel(
     }
 
     private suspend fun findWordOccurrences() {
+        mWordOccurrences.value = UIState.Loading
         findCharSequenceOccurrencesUseCase.invoke().collect { result ->
             if (result.isFailure) {
                 mWordOccurrences.update {

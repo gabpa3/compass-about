@@ -20,7 +20,6 @@
         android:layout_marginHorizontal="@dimen/_16dp"
         android:text="@string/home_welcome"
         android:textAlignment="center"
-        android:textColor="@color/black"
         android:textSize="@dimen/_30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

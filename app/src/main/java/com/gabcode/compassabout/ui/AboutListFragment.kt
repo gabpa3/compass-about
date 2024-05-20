@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,11 +47,10 @@ class AboutListFragment : Fragment() {
 
     private fun setupView() {
         with(binding) {
-            setupRecyclerView(tenthCharactersRecycler, LinearLayoutManager.HORIZONTAL)
-            setupRecyclerView(wordOccurrencesRecycler, LinearLayoutManager.VERTICAL)
+            setupRecyclerView(aboutTenthCharactersRecycler, LinearLayoutManager.HORIZONTAL)
+            setupRecyclerView(aboutWordOccurrencesRecycler, LinearLayoutManager.VERTICAL)
 
-            startFab.setOnClickListener {
-                initViewStates()
+            aboutStartFab.setOnClickListener {
                 sharedViewModel.startProcessingData()
             }
         }
@@ -59,10 +59,10 @@ class AboutListFragment : Fragment() {
 
     private fun initViewStates() {
         with(binding) {
-            tenthCharactersGroup.visibility = View.GONE
-            wordOccurrencesGroup.visibility = View.GONE
-            progressGroup.visibility = View.VISIBLE
-            startFab.isEnabled = false
+            aboutTenthCharactersGroup.visibility = View.GONE
+            aboutWordOccurrencesGroup.visibility = View.GONE
+            aboutProgressGroup.visibility = View.VISIBLE
+            aboutStartFab.isEnabled = false
         }
     }
 
@@ -88,14 +88,15 @@ class AboutListFragment : Fragment() {
 
     private fun handleStateForWordOccurrences(state: UIState<List<WordOccurrenceItem>>) {
         when (state) {
+            is UIState.Loading -> initViewStates()
             is UIState.Success -> {
                 val adapter = WordOccurrencesAdapter(state.data)
-                binding.wordOccurrencesRecycler.adapter = adapter
+                binding.aboutWordOccurrencesRecycler.adapter = adapter
 
-                binding.progressGroup.visibility = View.GONE
-                binding.wordOccurrencesGroup.visibility = View.VISIBLE
+                binding.aboutProgressGroup.visibility = View.GONE
+                binding.aboutWordOccurrencesGroup.visibility = View.VISIBLE
             }
-            is UIState.Error -> {}
+            is UIState.Error -> showError(state.throwable.message)
             is UIState.Idle -> {}
         }
     }
@@ -104,14 +105,19 @@ class AboutListFragment : Fragment() {
         when (state) {
             is UIState.Success -> {
                 val adapter = TenthCharactersAdapter(state.data)
-                binding.tenthCharactersRecycler.adapter = adapter
+                binding.aboutTenthCharactersRecycler.adapter = adapter
 
-                binding.tenthCharactersGroup.visibility = View.VISIBLE
-                binding.startFab.isEnabled = true
+                binding.aboutTenthCharactersGroup.visibility = View.VISIBLE
+                binding.aboutStartFab.isEnabled = true
             }
-            is UIState.Error -> {}
-            is UIState.Idle -> {}
+            is UIState.Error -> showError(state.throwable.message)
+            is UIState.Loading, is UIState.Idle -> {}
         }
+    }
+
+    private fun showError(message: String?) {
+        val errorMessage = message ?: getString(R.string.error_message)
+        Toast.makeText(this.context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

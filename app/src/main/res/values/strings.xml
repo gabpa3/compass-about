@@ -8,4 +8,5 @@
     <string name="home_subtitle">Let\'s dive into the content</string>
     <string name="home_author">By Gabriel Perez</string>
     <string name="home_start_button">Start Processing</string>
+    <string name="error_message">Something went wrong. We\'re on it!</string>
 </resources>
